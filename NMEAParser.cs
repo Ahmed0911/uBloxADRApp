@@ -42,7 +42,7 @@ namespace uBloxADRTester
         {
             if( cmd[0] == '$') // check if valid
             {
-                if( cmd.Contains("$GPRMC") )
+                if( cmd.Contains("$GPRMC") || cmd.Contains("$GNRMC"))
                 {
                     // RMC command, parse
                     string[] tokens = cmd.Split(',');
@@ -60,7 +60,7 @@ namespace uBloxADRTester
                     SpeedMps = speedmeterspersec;
                     Heading = cog;
                 }
-                if (cmd.Contains("$GPGGA"))
+                if (cmd.Contains("$GPGGA") || cmd.Contains("$GNGGA"))
                 {
                     // RMC command, parse
                     string[] tokens = cmd.Split(',');

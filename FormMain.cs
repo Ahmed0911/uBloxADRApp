@@ -14,7 +14,8 @@ namespace uBloxADRTester
 {
     public partial class FormADR : Form
     {
-        NMEAParser nmeaParser = new NMEAParser();
+        NMEAParser nmeaParserTelit = new NMEAParser();
+        NMEAParser nmeaParserUBlox = new NMEAParser();
 
         // Log Files
         StreamWriter telitLogger;
@@ -63,24 +64,50 @@ namespace uBloxADRTester
             if( serialPortTelit.IsOpen)
             {
                 string newData = serialPortTelit.ReadExisting();
-                nmeaParser.NewData(newData);
+                nmeaParserTelit.NewData(newData);
 
                 // Log Data
                 if( newData.Length > 0) telitLogger.Write(newData);
             }
 
+            // get data from uBlox
+            if (serialPortuBlox.IsOpen)
+            {
+                string newData = serialPortuBlox.ReadExisting();
+                nmeaParserUBlox.NewData(newData);
+
+                // Log Data
+                if (newData.Length > 0) ubloxLogger.Write(newData);
+            }
 
             // update data
-            textBoxTelitSatNr.Text = nmeaParser.SatNr.ToString();
-            textBoxTelitTime.Text = nmeaParser.Time.ToString();
-            textBoxTelitSpeed.Text = nmeaParser.SpeedMps.ToString("0.00 m/s");
-            textBoxTelitHeading.Text = nmeaParser.Heading.ToString();
+            textBoxTelitSatNr.Text = nmeaParserTelit.SatNr.ToString();
+            textBoxTelitTime.Text = nmeaParserTelit.Time.ToString();
+            textBoxTelitSpeed.Text = nmeaParserTelit.SpeedMps.ToString("0.00 m/s");
+            textBoxTelitHeading.Text = nmeaParserTelit.Heading.ToString();
+
+            textBoxuBloxSatNr.Text = nmeaParserUBlox.SatNr.ToString();
+            textBoxuBloxTime.Text = nmeaParserUBlox.Time.ToString();
+            textBoxuBloxSpeed.Text = nmeaParserUBlox.SpeedMps.ToString("0.00 m/s");
+            textBoxuBloxHeading.Text = nmeaParserUBlox.Heading.ToString();
         }
 
         private void FormADR_FormClosed(object sender, FormClosedEventArgs e)
         {
             telitLogger.Close();
             ubloxLogger.Close();
+        }
+
+        private void buttonCommConnectuBlox_Click(object sender, EventArgs e)
+        {
+            if (comboBoxComPortListuBlox.SelectedIndex >= 0)
+            {
+                serialPortuBlox.PortName = (string)comboBoxComPortListuBlox.SelectedItem;
+                serialPortuBlox.BaudRate = 115200;
+                serialPortuBlox.Open();
+
+                buttonCommConnectuBlox.Enabled = false;
+            }
         }
     }
 }

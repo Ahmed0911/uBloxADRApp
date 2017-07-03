@@ -47,7 +47,17 @@
             this.textBoxTelitTime = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.timerMain = new System.Windows.Forms.Timer(this.components);
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.textBoxuBloxHeading = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.textBoxuBloxSpeed = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.textBoxuBloxSatNr = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.textBoxuBloxTime = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // comboBoxComPortListTelit
@@ -104,6 +114,7 @@
             this.buttonCommConnectuBlox.TabIndex = 5;
             this.buttonCommConnectuBlox.Text = "Connect";
             this.buttonCommConnectuBlox.UseVisualStyleBackColor = true;
+            this.buttonCommConnectuBlox.Click += new System.EventHandler(this.buttonCommConnectuBlox_Click);
             // 
             // groupBox1
             // 
@@ -192,11 +203,93 @@
             this.timerMain.Interval = 20;
             this.timerMain.Tick += new System.EventHandler(this.timerMain_Tick);
             // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.textBoxuBloxHeading);
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.textBoxuBloxSpeed);
+            this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.textBoxuBloxSatNr);
+            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.textBoxuBloxTime);
+            this.groupBox2.Controls.Add(this.label10);
+            this.groupBox2.Location = new System.Drawing.Point(326, 205);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(276, 169);
+            this.groupBox2.TabIndex = 9;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "u-Blox";
+            // 
+            // textBoxuBloxHeading
+            // 
+            this.textBoxuBloxHeading.Location = new System.Drawing.Point(87, 130);
+            this.textBoxuBloxHeading.Name = "textBoxuBloxHeading";
+            this.textBoxuBloxHeading.Size = new System.Drawing.Size(165, 26);
+            this.textBoxuBloxHeading.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(8, 133);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(73, 20);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Heading:";
+            // 
+            // textBoxuBloxSpeed
+            // 
+            this.textBoxuBloxSpeed.Location = new System.Drawing.Point(74, 99);
+            this.textBoxuBloxSpeed.Name = "textBoxuBloxSpeed";
+            this.textBoxuBloxSpeed.Size = new System.Drawing.Size(178, 26);
+            this.textBoxuBloxSpeed.TabIndex = 5;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(8, 102);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(60, 20);
+            this.label8.TabIndex = 4;
+            this.label8.Text = "Speed:";
+            // 
+            // textBoxuBloxSatNr
+            // 
+            this.textBoxuBloxSatNr.Location = new System.Drawing.Point(74, 67);
+            this.textBoxuBloxSatNr.Name = "textBoxuBloxSatNr";
+            this.textBoxuBloxSatNr.Size = new System.Drawing.Size(178, 26);
+            this.textBoxuBloxSatNr.TabIndex = 3;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(8, 70);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(47, 20);
+            this.label9.TabIndex = 2;
+            this.label9.Text = "Sat#:";
+            // 
+            // textBoxuBloxTime
+            // 
+            this.textBoxuBloxTime.Location = new System.Drawing.Point(74, 35);
+            this.textBoxuBloxTime.Name = "textBoxuBloxTime";
+            this.textBoxuBloxTime.Size = new System.Drawing.Size(178, 26);
+            this.textBoxuBloxTime.TabIndex = 1;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(8, 38);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 20);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Time:";
+            // 
             // FormADR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 498);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.comboBoxComPortListuBlox);
@@ -209,6 +302,8 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormADR_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -234,6 +329,15 @@
         private System.Windows.Forms.Timer timerMain;
         private System.Windows.Forms.TextBox textBoxTelitHeading;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.TextBox textBoxuBloxHeading;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox textBoxuBloxSpeed;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox textBoxuBloxSatNr;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TextBox textBoxuBloxTime;
+        private System.Windows.Forms.Label label10;
     }
 }
 
