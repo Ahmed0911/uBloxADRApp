@@ -21,6 +21,9 @@ namespace uBloxADRTester
         StreamWriter telitLogger;
         StreamWriter ubloxLogger;
 
+        int TivaDataSent = 0;
+        int TivaLastSentFrequency = 0;
+
         public FormADR()
         {
             InitializeComponent();
@@ -29,6 +32,7 @@ namespace uBloxADRTester
             string[] ports = SerialPort.GetPortNames();
             comboBoxComPortListTelit.Items.AddRange(ports);
             comboBoxComPortListuBlox.Items.AddRange(ports);
+            comboBoxComPortListTiva.Items.AddRange(ports);
 
             // select second
             if (comboBoxComPortListTelit.Items.Count >= 2)
@@ -39,6 +43,11 @@ namespace uBloxADRTester
             if (comboBoxComPortListTelit.Items.Count >= 3)
             {
                 comboBoxComPortListuBlox.SelectedIndex = 2;
+            }
+            // select Tiva
+            if (comboBoxComPortListTiva.Items.Count >= 3)
+            {
+                comboBoxComPortListTiva.SelectedIndex = 1;
             }
 
             // Open Log Files
@@ -64,10 +73,19 @@ namespace uBloxADRTester
             if( serialPortTelit.IsOpen)
             {
                 string newData = serialPortTelit.ReadExisting();
-                nmeaParserTelit.NewData(newData);
+                bool dataReceived = nmeaParserTelit.NewData(newData);
 
                 // Log Data
                 if( newData.Length > 0) telitLogger.Write(newData);
+
+                if(dataReceived)
+                {
+                    // send data to uBlox
+                    // convert speed
+                    int frequency = (int)(nmeaParserTelit.SpeedMps * 10000); // convert to cm/s->frequency
+                    if (frequency < 100) frequency = 0;
+                    SendSpeedToTiva(frequency);
+                }
             }
 
             // get data from uBlox
@@ -90,6 +108,9 @@ namespace uBloxADRTester
             textBoxuBloxTime.Text = nmeaParserUBlox.Time.ToString();
             textBoxuBloxSpeed.Text = nmeaParserUBlox.SpeedMps.ToString("0.00 m/s");
             textBoxuBloxHeading.Text = nmeaParserUBlox.Heading.ToString();
+
+            textBoxTivaDataSent.Text = TivaDataSent.ToString();
+            textBoxTivaDataSentFreq.Text = TivaLastSentFrequency.ToString();
         }
 
         private void FormADR_FormClosed(object sender, FormClosedEventArgs e)
@@ -107,6 +128,35 @@ namespace uBloxADRTester
                 serialPortuBlox.Open();
 
                 buttonCommConnectuBlox.Enabled = false;
+            }
+        }
+
+        private void buttonCommConnectTiva_Click(object sender, EventArgs e)
+        {
+            if (comboBoxComPortListTiva.SelectedIndex >= 0)
+            {
+                serialPortTiva.PortName = (string)comboBoxComPortListTiva.SelectedItem;
+                serialPortTiva.BaudRate = 115200;
+                serialPortTiva.Open();
+
+                buttonCommConnectTiva.Enabled = false;
+            }
+        }
+
+        private void SendSpeedToTiva(int speed)
+        {
+            if (serialPortTiva.IsOpen)
+            {
+                TivaLastSentFrequency = speed;
+                byte[] data = BitConverter.GetBytes(speed);
+                byte[] dataToSend = new byte[5];
+                dataToSend[0] = 0x24;
+                Array.Copy(data, 0, dataToSend, 1, 4);
+
+                // send to serial port
+                serialPortTiva.Write(dataToSend, 0, 5);
+
+                TivaDataSent++;
             }
         }
     }

@@ -15,8 +15,9 @@ namespace uBloxADRTester
         public double SpeedMps = 0;
         public double Heading = 0;
 
-        public void NewData(string data)
+        public bool NewData(string data)
         {
+            bool newDataReceived = false;
             string totalData = remainingData + data; // concatenate data
 
             if (totalData.Length > 0)
@@ -29,17 +30,24 @@ namespace uBloxADRTester
                     for (int i = 0; i != commands.Length - 1; i++)
                     {
                         // parse command
-                        ParseCommand(commands[i]);
+                        if( ParseCommand(commands[i]) )
+                        {
+                            newDataReceived = true;
+                        }
                     }
 
                     // set remaining
                     remainingData = commands[commands.Length - 1];
                 }
             }
+
+            return newDataReceived;
         }
 
-        private void ParseCommand(string cmd)
+        private bool ParseCommand(string cmd)
         {
+            bool newDataReceived = false;
+
             if( cmd[0] == '$') // check if valid
             {
                 if( cmd.Contains("$GPRMC") || cmd.Contains("$GNRMC"))
@@ -59,6 +67,8 @@ namespace uBloxADRTester
                     Time = time;
                     SpeedMps = speedmeterspersec;
                     Heading = cog;
+
+                    newDataReceived = true;
                 }
                 if (cmd.Contains("$GPGGA") || cmd.Contains("$GNGGA"))
                 {
@@ -70,6 +80,8 @@ namespace uBloxADRTester
                     SatNr = (int)satNum;
                 }
             }
+
+            return newDataReceived;
         }
     }
 }

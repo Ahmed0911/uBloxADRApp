@@ -56,6 +56,14 @@
             this.label9 = new System.Windows.Forms.Label();
             this.textBoxuBloxTime = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.comboBoxComPortListTiva = new System.Windows.Forms.ComboBox();
+            this.buttonCommConnectTiva = new System.Windows.Forms.Button();
+            this.serialPortTiva = new System.IO.Ports.SerialPort(this.components);
+            this.textBoxTivaDataSent = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.textBoxTivaDataSentFreq = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -126,7 +134,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBoxTelitTime);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Location = new System.Drawing.Point(16, 205);
+            this.groupBox1.Location = new System.Drawing.Point(16, 295);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 169);
             this.groupBox1.TabIndex = 8;
@@ -213,7 +221,7 @@
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.textBoxuBloxTime);
             this.groupBox2.Controls.Add(this.label10);
-            this.groupBox2.Location = new System.Drawing.Point(326, 205);
+            this.groupBox2.Location = new System.Drawing.Point(326, 295);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(276, 169);
             this.groupBox2.TabIndex = 9;
@@ -284,11 +292,78 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "Time:";
             // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(12, 152);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(84, 20);
+            this.label11.TabIndex = 12;
+            this.label11.Text = "Tiva Board";
+            // 
+            // comboBoxComPortListTiva
+            // 
+            this.comboBoxComPortListTiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxComPortListTiva.FormattingEnabled = true;
+            this.comboBoxComPortListTiva.Location = new System.Drawing.Point(12, 175);
+            this.comboBoxComPortListTiva.Name = "comboBoxComPortListTiva";
+            this.comboBoxComPortListTiva.Size = new System.Drawing.Size(188, 28);
+            this.comboBoxComPortListTiva.TabIndex = 11;
+            // 
+            // buttonCommConnectTiva
+            // 
+            this.buttonCommConnectTiva.Location = new System.Drawing.Point(206, 166);
+            this.buttonCommConnectTiva.Name = "buttonCommConnectTiva";
+            this.buttonCommConnectTiva.Size = new System.Drawing.Size(86, 45);
+            this.buttonCommConnectTiva.TabIndex = 10;
+            this.buttonCommConnectTiva.Text = "Connect";
+            this.buttonCommConnectTiva.UseVisualStyleBackColor = true;
+            this.buttonCommConnectTiva.Click += new System.EventHandler(this.buttonCommConnectTiva_Click);
+            // 
+            // textBoxTivaDataSent
+            // 
+            this.textBoxTivaDataSent.Location = new System.Drawing.Point(400, 175);
+            this.textBoxTivaDataSent.Name = "textBoxTivaDataSent";
+            this.textBoxTivaDataSent.Size = new System.Drawing.Size(178, 26);
+            this.textBoxTivaDataSent.TabIndex = 15;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(334, 178);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(47, 20);
+            this.label12.TabIndex = 14;
+            this.label12.Text = "Sent:";
+            // 
+            // textBoxTivaDataSentFreq
+            // 
+            this.textBoxTivaDataSentFreq.Location = new System.Drawing.Point(400, 207);
+            this.textBoxTivaDataSentFreq.Name = "textBoxTivaDataSentFreq";
+            this.textBoxTivaDataSentFreq.Size = new System.Drawing.Size(178, 26);
+            this.textBoxTivaDataSentFreq.TabIndex = 17;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(334, 210);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(46, 20);
+            this.label13.TabIndex = 16;
+            this.label13.Text = "Freq:";
+            // 
             // FormADR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 498);
+            this.Controls.Add(this.textBoxTivaDataSentFreq);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.textBoxTivaDataSent);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.comboBoxComPortListTiva);
+            this.Controls.Add(this.buttonCommConnectTiva);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -338,6 +413,14 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBoxuBloxTime;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comboBoxComPortListTiva;
+        private System.Windows.Forms.Button buttonCommConnectTiva;
+        private System.IO.Ports.SerialPort serialPortTiva;
+        private System.Windows.Forms.TextBox textBoxTivaDataSent;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.TextBox textBoxTivaDataSentFreq;
+        private System.Windows.Forms.Label label13;
     }
 }
 
