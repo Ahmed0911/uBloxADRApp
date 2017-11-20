@@ -45,6 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ELMProcessor.cs" />
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>

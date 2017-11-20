@@ -57,13 +57,18 @@
             this.textBoxuBloxTime = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.comboBoxComPortListTiva = new System.Windows.Forms.ComboBox();
-            this.buttonCommConnectTiva = new System.Windows.Forms.Button();
-            this.serialPortTiva = new System.IO.Ports.SerialPort(this.components);
+            this.comboBoxComPortListELM = new System.Windows.Forms.ComboBox();
+            this.buttonCommConnectELM = new System.Windows.Forms.Button();
+            this.serialPortELM = new System.IO.Ports.SerialPort(this.components);
             this.textBoxTivaDataSent = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.textBoxTivaDataSentFreq = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
+            this.richTextBoxELMTerminal = new System.Windows.Forms.RichTextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.textBoxELMState = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.checkBoxELMLog = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +76,7 @@
             // comboBoxComPortListTelit
             // 
             this.comboBoxComPortListTelit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxComPortListTelit.Enabled = false;
             this.comboBoxComPortListTelit.FormattingEnabled = true;
             this.comboBoxComPortListTelit.Location = new System.Drawing.Point(12, 50);
             this.comboBoxComPortListTelit.Name = "comboBoxComPortListTelit";
@@ -79,6 +85,7 @@
             // 
             // buttonCommConnectTelit
             // 
+            this.buttonCommConnectTelit.Enabled = false;
             this.buttonCommConnectTelit.Location = new System.Drawing.Point(206, 41);
             this.buttonCommConnectTelit.Name = "buttonCommConnectTelit";
             this.buttonCommConnectTelit.Size = new System.Drawing.Size(86, 45);
@@ -134,6 +141,7 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.textBoxTelitTime);
             this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Enabled = false;
             this.groupBox1.Location = new System.Drawing.Point(16, 295);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(276, 169);
@@ -208,7 +216,6 @@
             // timerMain
             // 
             this.timerMain.Enabled = true;
-            this.timerMain.Interval = 20;
             this.timerMain.Tick += new System.EventHandler(this.timerMain_Tick);
             // 
             // groupBox2
@@ -297,32 +304,32 @@
             this.label11.AutoSize = true;
             this.label11.Location = new System.Drawing.Point(12, 152);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(84, 20);
+            this.label11.Size = new System.Drawing.Size(73, 20);
             this.label11.TabIndex = 12;
-            this.label11.Text = "Tiva Board";
+            this.label11.Text = "ELM 327";
             // 
-            // comboBoxComPortListTiva
+            // comboBoxComPortListELM
             // 
-            this.comboBoxComPortListTiva.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBoxComPortListTiva.FormattingEnabled = true;
-            this.comboBoxComPortListTiva.Location = new System.Drawing.Point(12, 175);
-            this.comboBoxComPortListTiva.Name = "comboBoxComPortListTiva";
-            this.comboBoxComPortListTiva.Size = new System.Drawing.Size(188, 28);
-            this.comboBoxComPortListTiva.TabIndex = 11;
+            this.comboBoxComPortListELM.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxComPortListELM.FormattingEnabled = true;
+            this.comboBoxComPortListELM.Location = new System.Drawing.Point(12, 175);
+            this.comboBoxComPortListELM.Name = "comboBoxComPortListELM";
+            this.comboBoxComPortListELM.Size = new System.Drawing.Size(188, 28);
+            this.comboBoxComPortListELM.TabIndex = 11;
             // 
-            // buttonCommConnectTiva
+            // buttonCommConnectELM
             // 
-            this.buttonCommConnectTiva.Location = new System.Drawing.Point(206, 166);
-            this.buttonCommConnectTiva.Name = "buttonCommConnectTiva";
-            this.buttonCommConnectTiva.Size = new System.Drawing.Size(86, 45);
-            this.buttonCommConnectTiva.TabIndex = 10;
-            this.buttonCommConnectTiva.Text = "Connect";
-            this.buttonCommConnectTiva.UseVisualStyleBackColor = true;
-            this.buttonCommConnectTiva.Click += new System.EventHandler(this.buttonCommConnectTiva_Click);
+            this.buttonCommConnectELM.Location = new System.Drawing.Point(206, 166);
+            this.buttonCommConnectELM.Name = "buttonCommConnectELM";
+            this.buttonCommConnectELM.Size = new System.Drawing.Size(86, 45);
+            this.buttonCommConnectELM.TabIndex = 10;
+            this.buttonCommConnectELM.Text = "Connect";
+            this.buttonCommConnectELM.UseVisualStyleBackColor = true;
+            this.buttonCommConnectELM.Click += new System.EventHandler(this.buttonCommConnectELM_Click);
             // 
             // textBoxTivaDataSent
             // 
-            this.textBoxTivaDataSent.Location = new System.Drawing.Point(400, 175);
+            this.textBoxTivaDataSent.Location = new System.Drawing.Point(400, 222);
             this.textBoxTivaDataSent.Name = "textBoxTivaDataSent";
             this.textBoxTivaDataSent.Size = new System.Drawing.Size(178, 26);
             this.textBoxTivaDataSent.TabIndex = 15;
@@ -330,7 +337,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(334, 178);
+            this.label12.Location = new System.Drawing.Point(334, 225);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(47, 20);
             this.label12.TabIndex = 14;
@@ -338,7 +345,7 @@
             // 
             // textBoxTivaDataSentFreq
             // 
-            this.textBoxTivaDataSentFreq.Location = new System.Drawing.Point(400, 207);
+            this.textBoxTivaDataSentFreq.Location = new System.Drawing.Point(400, 254);
             this.textBoxTivaDataSentFreq.Name = "textBoxTivaDataSentFreq";
             this.textBoxTivaDataSentFreq.Size = new System.Drawing.Size(178, 26);
             this.textBoxTivaDataSentFreq.TabIndex = 17;
@@ -346,24 +353,74 @@
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(334, 210);
+            this.label13.Location = new System.Drawing.Point(334, 257);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(46, 20);
             this.label13.TabIndex = 16;
             this.label13.Text = "Freq:";
+            // 
+            // richTextBoxELMTerminal
+            // 
+            this.richTextBoxELMTerminal.Location = new System.Drawing.Point(338, 50);
+            this.richTextBoxELMTerminal.Name = "richTextBoxELMTerminal";
+            this.richTextBoxELMTerminal.Size = new System.Drawing.Size(240, 157);
+            this.richTextBoxELMTerminal.TabIndex = 18;
+            this.richTextBoxELMTerminal.Text = "";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(334, 27);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(137, 20);
+            this.label14.TabIndex = 19;
+            this.label14.Text = "ELM 327 Terminal";
+            // 
+            // textBoxELMState
+            // 
+            this.textBoxELMState.Location = new System.Drawing.Point(114, 245);
+            this.textBoxELMState.Name = "textBoxELMState";
+            this.textBoxELMState.Size = new System.Drawing.Size(178, 26);
+            this.textBoxELMState.TabIndex = 21;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(24, 248);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(89, 20);
+            this.label15.TabIndex = 20;
+            this.label15.Text = "ELM State:";
+            // 
+            // checkBoxELMLog
+            // 
+            this.checkBoxELMLog.AutoSize = true;
+            this.checkBoxELMLog.Checked = true;
+            this.checkBoxELMLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.checkBoxELMLog.Location = new System.Drawing.Point(516, 20);
+            this.checkBoxELMLog.Name = "checkBoxELMLog";
+            this.checkBoxELMLog.Size = new System.Drawing.Size(62, 24);
+            this.checkBoxELMLog.TabIndex = 22;
+            this.checkBoxELMLog.Text = "Log";
+            this.checkBoxELMLog.UseVisualStyleBackColor = true;
             // 
             // FormADR
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(651, 498);
+            this.Controls.Add(this.checkBoxELMLog);
+            this.Controls.Add(this.textBoxELMState);
+            this.Controls.Add(this.label15);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.richTextBoxELMTerminal);
             this.Controls.Add(this.textBoxTivaDataSentFreq);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.textBoxTivaDataSent);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label11);
-            this.Controls.Add(this.comboBoxComPortListTiva);
-            this.Controls.Add(this.buttonCommConnectTiva);
+            this.Controls.Add(this.comboBoxComPortListELM);
+            this.Controls.Add(this.buttonCommConnectELM);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label2);
@@ -414,13 +471,18 @@
         private System.Windows.Forms.TextBox textBoxuBloxTime;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.ComboBox comboBoxComPortListTiva;
-        private System.Windows.Forms.Button buttonCommConnectTiva;
-        private System.IO.Ports.SerialPort serialPortTiva;
+        private System.Windows.Forms.ComboBox comboBoxComPortListELM;
+        private System.Windows.Forms.Button buttonCommConnectELM;
+        private System.IO.Ports.SerialPort serialPortELM;
         private System.Windows.Forms.TextBox textBoxTivaDataSent;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox textBoxTivaDataSentFreq;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.RichTextBox richTextBoxELMTerminal;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.TextBox textBoxELMState;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox checkBoxELMLog;
     }
 }
 
